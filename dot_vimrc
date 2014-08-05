@@ -1,0 +1,95 @@
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" handle zcml files as xml
+au BufRead,BufNewFile *.zcml set filetype=xml
+
+" automatically check of puppet files
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['puppet']}
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+"Bundle 'git://git.wincent.com/command-t.git'
+Plugin 'wincent/Command-T'
+Plugin 'FuzzyFinder'
+Plugin 'majutsushi/tagbar'
+Plugin 'mileszs/ack.vim'
+Plugin 'L9'
+Plugin 'taglist.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+" Plugin 'Python-mode-klen'
+" Bundle 'klen/python-mode'
+Plugin 'vim-scripts/Tabular'
+Plugin 'scrooloose/syntastic'
+"" Plugin 'rodjek/vim-puppet'
+Plugin 'Yasumoto/vim-puppet'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'davidhalter/jedi-vim'
+
+call vundle#end()
+
+syntax on
+filetype plugin indent on
+
+" python-mode
+let g:pymode_folding = 0
+let g:pymode_options = 0
+" temporary
+" https://github.com/klen/python-mode/issues/261
+let g:pymode_lint = 1
+
+
+" some settings
+set hlsearch
+" 256 colors
+set t_Co=256
+" enable ruler and line numbers by default
+set ruler
+" set number
+set relativenumber
+set nu
+set smartindent
+" set autochdir
+" nice menu for find, etc.
+set wildmenu
+" enable mouse usage by default
+"set mouse=a
+" ack-grep rules
+set grepprg=ack
+set showcmd
+set cursorline
+
+"colorscheme delek
+colorscheme default
+
+" gray background misspell or syntax error, to avoid red on red
+highlight SpellBad ctermbg=gray cterm=underline,bold guibg=#ffb6b0
+highlight CursorLine ctermbg=lightyellow cterm=None
+highlight Special ctermfg=blue
+
+" Functions
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
+
+function! ToggleLineNumbers()
+  if &number
+    set nonumber
+    echo "Line numbers disabled"
+  else
+    set number
+    echo "Line numbers enabled"
+  endif
+endfunction

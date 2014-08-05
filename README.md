@@ -1,4 +1,4 @@
 vim-dev-env
 ===========
 
-Just my vim develop environment
+Just my vim development environment
