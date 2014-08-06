@@ -36,6 +36,7 @@ call vundle#end()
 
 syntax on
 filetype plugin indent on
+autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " python-mode
 let g:pymode_folding = 0
