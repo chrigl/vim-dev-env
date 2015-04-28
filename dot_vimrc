@@ -49,12 +49,6 @@ let g:jedi#show_call_signatures = 0
 " handle zcml files as xml
 au BufRead,BufNewFile *.zcml set filetype=xml
 
-" load files for different FileTypes
-au FileType python so ~/.vim/zopeedit.vim
-au FileType html so ~/.vim/htmledit.vim
-au FileType xml so ~/.vim/htmledit.vim
-au FileType xhtml so ~/.vim/htmledit.vim
-
 " I like to use command-t for finding files
 " http://www.vim.org/scripts/script.php?script_id=3025
 " Do not know why it is not done automatically
