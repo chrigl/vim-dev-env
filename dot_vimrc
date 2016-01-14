@@ -5,10 +5,9 @@ call vundle#begin()
 " automatically check of puppet files
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['puppet']}
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-"Bundle 'git://git.wincent.com/command-t.git'
 Plugin 'wincent/Command-T'
 Plugin 'FuzzyFinder'
 Plugin 'majutsushi/tagbar'
@@ -19,12 +18,9 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-" Plugin 'Python-mode-klen'
-" Bundle 'klen/python-mode'
 Plugin 'vim-scripts/Tabular'
 Plugin 'scrooloose/syntastic'
-"" Plugin 'rodjek/vim-puppet'
-Plugin 'Yasumoto/vim-puppet'
+Plugin 'rodjek/vim-puppet'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'davidhalter/jedi-vim'
 
@@ -33,6 +29,7 @@ call vundle#end()
 syntax on
 filetype plugin indent on
 autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " python-mode
 let g:pymode_folding = 0
@@ -48,6 +45,9 @@ let g:jedi#show_call_signatures = 0
 
 " handle zcml files as xml
 au BufRead,BufNewFile *.zcml set filetype=xml
+
+" handls sls as yaml
+au BufRead,BufNewFile *.sls set filetype=yaml
 
 " I like to use command-t for finding files
 " http://www.vim.org/scripts/script.php?script_id=3025
