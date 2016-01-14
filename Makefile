@@ -16,7 +16,7 @@ ${HOME}/.vim/bundle:
 	mkdir -p ${HOME}/.vim/bundle
 
 ${HOME}/.vim/bundle/Vundle.vim: 
-	git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
 
 ${HOME}/.vim/bundle.installed: ${HOME}/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
