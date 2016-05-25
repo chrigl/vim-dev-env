@@ -30,6 +30,8 @@ syntax on
 filetype plugin indent on
 autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set laststatus=2
+set statusline+=%.70F%y%=%4l/%4L(%3c)
 
 " python-mode
 let g:pymode_folding = 0
