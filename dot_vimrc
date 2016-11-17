@@ -1,29 +1,21 @@
 filetype off                   " required!
 
+set shell=/bin/bash  " Needed for Vundle in case of using fish
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " automatically check of puppet files
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['puppet']}
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'wincent/Command-T'
-Plugin 'FuzzyFinder'
-Plugin 'majutsushi/tagbar'
-Plugin 'mileszs/ack.vim'
-Plugin 'L9'
-Plugin 'taglist.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'vim-scripts/Tabular'
-Plugin 'scrooloose/syntastic'
-Plugin 'rodjek/vim-puppet'
-Plugin 'jgdavey/tslime.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'fatih/vim-go'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
@@ -32,23 +24,23 @@ filetype plugin indent on
 autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set laststatus=2
-set statusline+=%.70F%y%=%4l/%4L(%3c)
+set statusline+=%.70F%y%=
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%4l/%4L(%3c)
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "local_snippets"]
 " Disabled 
 " https://github.com/davidhalter/jedi-vim/issues/163#issuecomment-73343003
 let g:jedi#show_call_signatures = 0
 
-" handle zcml files as xml
-au BufRead,BufNewFile *.zcml set filetype=xml
-
 " handls sls as yaml
 au BufRead,BufNewFile *.sls set filetype=yaml
-
-" I like to use command-t for finding files
-" http://www.vim.org/scripts/script.php?script_id=3025
-" Do not know why it is not done automatically
-" so /usr/share/vim/vimfiles/plugin/command-t.vim
 
 " some settings
 set hlsearch
@@ -71,7 +63,6 @@ set cursorline
 
 "colorscheme delek
 colorscheme default
-syntax on
 
 " gray background misspell or syntax error, to avoid red on red
 highlight SpellBad ctermbg=gray cterm=underline,bold guibg=#ffb6b0
@@ -97,9 +88,11 @@ endfunction
 function! ToggleLineNumbers()
   if &number
     set nonumber
+    set norelativenumber
     echo "Line numbers disabled"
   else
     set number
+    set relativenumber
     echo "Line numbers enabled"
   endif
 endfunction
