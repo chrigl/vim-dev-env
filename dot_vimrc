@@ -16,6 +16,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/neocomplete.vim'
 
 call vundle#end()
 
@@ -39,6 +40,15 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "local_snippets"]
 " Disabled 
 " https://github.com/davidhalter/jedi-vim/issues/163#issuecomment-73343003
 let g:jedi#show_call_signatures = 0
+
+" Set path to install helpers for vim-go
+let g:go_bin_path = expand("~/.vim/vim-go")
+" Because I use syntastic
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" Enable neocomplete
+let g:neocomplete#enable_at_startup = 1
 
 " handls sls as yaml
 au BufRead,BufNewFile *.sls set filetype=yaml
