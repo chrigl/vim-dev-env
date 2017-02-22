@@ -22,12 +22,13 @@ call vundle#end()
 syntax on
 filetype plugin indent on
 autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2 list
 set laststatus=2
 set statusline+=%.70F%y%=
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%4l/%4L(%3c)
 set statusline+=%*
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
