@@ -9,6 +9,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['puppet']}
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'Shougo/neocomplete'
 Plugin 'fatih/vim-go'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tomtom/tlib_vim'
@@ -16,20 +17,39 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'junegunn/fzf'
+Plugin 'hashivim/vim-terraform'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
+" Open grep in a quickfix window
+autocmd QuickFixCmdPost *grep* cwindow
+
+let g:terraform_align=1
 syntax on
 filetype plugin indent on
 autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2 list
+autocmd FileType terraform setlocal commentstring=#%s
 set laststatus=2
 set statusline+=%.70F%y%=
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%4l/%4L(%3c)
 set statusline+=%*
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+" Only set this if vim-go needs to be updated
+" let $GOPATH="/Users/chris/go"
+" let g:go_fmt_command = "goimports"
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -40,15 +60,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "local_snippets"]
 " Disabled 
 " https://github.com/davidhalter/jedi-vim/issues/163#issuecomment-73343003
 let g:jedi#show_call_signatures = 0
-
-" Set path to install helpers for vim-go
-let g:go_bin_path = expand("~/.vim/vim-go")
-" Because I use syntastic
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-" Enable neocomplete
-let g:neocomplete#enable_at_startup = 1
 
 " handls sls as yaml
 au BufRead,BufNewFile *.sls set filetype=yaml
