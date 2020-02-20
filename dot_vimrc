@@ -3,20 +3,17 @@ filetype off                   " required!
 set shell=/bin/bash  " Needed for Vundle in case of using fish
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" automatically check of puppet files
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['puppet']}
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'Shougo/neocomplete'
-Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go', {'pinned': 1}
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf'
 Plugin 'hashivim/vim-terraform'
 Plugin 'tpope/vim-fugitive'
@@ -38,9 +35,6 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%4l/%4L(%3c)
 set statusline+=%*
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-" Only set this if vim-go needs to be updated
-" let $GOPATH="/Users/chris/go"
-" let g:go_fmt_command = "goimports"
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
