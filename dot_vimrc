@@ -7,7 +7,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'fatih/vim-go', {'pinned': 1}
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tomtom/tlib_vim'
@@ -26,9 +28,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 let g:terraform_align=1
 syntax on
 filetype plugin indent on
-autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2 list
-autocmd FileType terraform setlocal commentstring=#%s
 set laststatus=2
 set statusline+=%.70F%y%=
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -38,12 +37,17 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Use deoplete for go and sh
+" python does not work because of virtualenv
+let g:deoplete#enable_at_startup = 0
+autocmd FileType python set smarttab expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType yaml set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2 list
+autocmd FileType terraform setlocal commentstring=#%s
+augroup deoplete
+	autocmd deoplete FileType go call deoplete#enable()
+	autocmd deoplete FileType go call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+	autocmd deoplete FileType sh call deoplete#enable()
+augroup END
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
